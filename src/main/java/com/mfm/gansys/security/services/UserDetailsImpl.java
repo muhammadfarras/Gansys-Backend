@@ -15,6 +15,10 @@ public class UserDetailsImpl implements UserDetails {
 
     private Long id;
 
+    private String firstName;
+
+    private String lastName;
+
     private String email;
 
     private String password;
@@ -26,9 +30,11 @@ public class UserDetailsImpl implements UserDetails {
 
 
     // Buat constructor untuk membuat objek userdetailsservice implement
-    public UserDetailsImpl(Long id, String email, String password, boolean enable,
+    public UserDetailsImpl(Long id, String email, String password,String firstName, String lastName, boolean enable,
                            Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.enable = enable;
@@ -50,9 +56,19 @@ public class UserDetailsImpl implements UserDetails {
                 user.getId(),
                 user.getEmail(),
                 user.getPassword(),
+                user.getFirst_name(),
+                user.getLast_name(),
                 user.getIsEnable().intValue() == 1,
                 authorites
         );
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     @Override
@@ -88,5 +104,21 @@ public class UserDetailsImpl implements UserDetails {
     @Override
     public boolean isEnabled() {
         return enable;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 }

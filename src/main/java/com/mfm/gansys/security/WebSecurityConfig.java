@@ -78,7 +78,8 @@ public class WebSecurityConfig {
         });
 
         httpSecurity.authorizeHttpRequests(auth -> {
-            auth.anyRequest().permitAll();
+            auth.requestMatchers("/api/home/**").authenticated()
+                    .anyRequest().permitAll();
         });
 
         httpSecurity.authenticationProvider(authenticationProvider());
